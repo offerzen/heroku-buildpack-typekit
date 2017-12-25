@@ -15,6 +15,7 @@ sys.path.append(
 import output;
 import env;
 
+from analytics import Analytics;
 from typekit import Typekit;
 from heroku import Heroku;
 
@@ -38,6 +39,7 @@ try:
 
     typekit = Typekit(typeKitId, typeKitApiKey);
     heroku = Heroku(herokuAppName);
+    analytics = Analytics(herokuAppName);
 
     kit = typekit.kit();
 
@@ -59,6 +61,11 @@ try:
 
         print output.line('The domain "' + herokuAppUrl + '" has been added to your Typekit account.');
         print output.line('Your new kit may take a few minutes to be completely distributed across the Typekit network.');
+
+    ##
+    # NB: This is purely to see whom is using the buildpack.
+    ##
+    analytics.ping();
 
 except RuntimeError as e:
 
