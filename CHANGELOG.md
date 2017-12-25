@@ -3,7 +3,13 @@ Changelog
 
 Here's a log of all the changes that have happened to this package.
 
-1.1.0 - Latest
+1.2.0 - 2017-12-25 (Latest)
+
+#### Add
+
+- Added very basic analytical tracking of whom is using this buildpack based on the application domains [James Kirby]
+
+1.1.0 - 2017-08-16
 ------
 
 #### Add
