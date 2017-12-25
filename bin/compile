@@ -39,7 +39,6 @@ try:
 
     typekit = Typekit(typeKitId, typeKitApiKey);
     heroku = Heroku(herokuAppName);
-    analytics = Analytics(herokuAppName);
 
     kit = typekit.kit();
 
@@ -48,6 +47,8 @@ try:
 
     herokuAppUrl = heroku.url();
     typeKitDomains = kit['domains'];
+
+    analytics = Analytics(herokuAppUrl);
 
     if herokuAppUrl in typeKitDomains:
         print output.line('The domain "' + herokuAppUrl + '" has already been added into Typekit.');
