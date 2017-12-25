@@ -8,7 +8,7 @@ class Analytics():
     def __init__(self, domain):
         self.domain = domain;
         self.service = 'heroku-buildpack-typekit';
-        self.endpoint = 'jedkirby.com';
+        self.endpoint = 'jedkirby-develop-pr-51.herokuapp.com';
 
     ##
     # Create a secure connection.
