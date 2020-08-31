@@ -48,25 +48,24 @@ try:
     typeKitDomains = kit['domains'];
 
     if herokuAppUrl in typeKitDomains:
-        print output.line('The domain "' + herokuAppUrl + '" has already been added into Typekit.');
+        print('The domain has already been added into Typekit.');
     else:
         typeKitDomains.append(herokuAppUrl);
 
         if not typekit.add(typeKitDomains):
-            raise RuntimeError('Unable to add domain "' + herokuAppUrl + '" to kit.');
+            raise RuntimeError('Unable to add domain to kit.');
 
         typekit.publish();
 
-        print output.line('The domain "' + herokuAppUrl + '" has been added to your Typekit account.');
-        print output.line('Your new kit may take a few minutes to be completely distributed across the Typekit network.');
+        print('The domain has been added to your Typekit account.');
+        print('Your new kit may take a few minutes to be completely distributed across the Typekit network.');
 
 except RuntimeError as e:
 
-    print output.line('Unable to process the kit with the ID "' + typeKitId + '".');
-    print output.line('Please double check your Kit ID and API Key.');
-    print output.line('Internal error: "' + str(e) + '"');
+    print('Please double check your Kit ID and API Key.');
+    # print('Internal error: "' + str(e) + '"');
 
 except:
 
-    print output.line('Please see the following URL for setup configuration settings:');
-    print output.line('https://github.com/jedkirby/heroku-buildpack-typekit');
+    print('Please see the following URL for setup configuration settings:');
+    print('https://github.com/jedkirby/heroku-buildpack-typekit');
