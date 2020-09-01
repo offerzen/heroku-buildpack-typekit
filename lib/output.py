@@ -7,7 +7,7 @@
 # @return string
 ##
 def heading(text):
-    return '-----> ' + text;
+    return '-----> ' + text
 
 ##
 # Print a single line.
@@ -16,7 +16,7 @@ def heading(text):
 # @return string
 ##
 def line(text):
-    return '       ' + text;
+    return '       ' + text
 
 ##
 # Print a single new line.
@@ -24,4 +24,4 @@ def line(text):
 # @return string
 ##
 def nl():
-    return line('');
+    return line('')

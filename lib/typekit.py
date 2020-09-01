@@ -1,14 +1,18 @@
 #!/usr/bin/env python
 
-import httplib;
-import json;
+try:
+    import httplib
+except ModuleNotFoundError:
+    import http.client as httplib
+
+import json
 
 class Typekit():
 
     def __init__(self, id, token):
-        self.id = id;
-        self.token = token;
-        self.endpoint = 'typekit.com';
+        self.id = id
+        self.token = token
+        self.endpoint = 'typekit.com'
 
     ##
     # Create a secure connection.
@@ -16,7 +20,7 @@ class Typekit():
     # @return HTTPSConnection
     ##
     def connection(self):
-        return httplib.HTTPSConnection(self.endpoint);
+        return httplib.HTTPSConnection(self.endpoint)
 
     ##
     # Build required request headers.
@@ -26,7 +30,7 @@ class Typekit():
     def headers(self):
         return {
             'X-Typekit-Token': self.token
-        };
+        }
 
     ##
     # Build params required for updating a kit.
@@ -49,17 +53,17 @@ class Typekit():
     ##
     def request(self, method, endpoint, body = ''):
         try :
-            conn = self.connection();
-            conn.request(method, endpoint, body, self.headers());
-            response = conn.getresponse();
+            conn = self.connection()
+            conn.request(method, endpoint, body, self.headers())
+            response = conn.getresponse()
             if response.status != 200:
-                return False;
+                return False
             else:
                 return json.loads(
                     response.read()
-                );
+                )
         finally:
-            conn.close();
+            conn.close()
 
     ##
     # Fetch a single kit using an id.
@@ -67,8 +71,8 @@ class Typekit():
     # @return bool|array
     ##
     def kit(self):
-        response = self.request('GET', '/api/v1/json/kits/' + self.id);
-        return response['kit'] if response else False;
+        response = self.request('GET', '/api/v1/json/kits/' + self.id)
+        return response['kit'] if response else False
 
     ##
     # Add domains to a single kit.
@@ -78,8 +82,8 @@ class Typekit():
     # @return bool
     ##
     def add(self, domains):
-        response = self.request('POST', '/api/v1/json/kits/' + self.id, self.params(domains));
-        return True if response else False;
+        response = self.request('POST', '/api/v1/json/kits/' + self.id, self.params(domains))
+        return True if response else False
 
     ##
     # Publish a single kit.
@@ -87,5 +91,5 @@ class Typekit():
     # @return bool
     ##
     def publish(self):
-        response = self.request('POST', '/api/v1/json/kits/' + self.id + '/publish');
-        return True if response else False;
+        response = self.request('POST', '/api/v1/json/kits/' + self.id + '/publish')
+        return True if response else False
